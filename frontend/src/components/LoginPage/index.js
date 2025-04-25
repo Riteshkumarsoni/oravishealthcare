@@ -7,7 +7,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 
 class LoginPage extends Component{
 
-    state={patientEmail: '', patientpassword:'', dentistemail: '', dentistPassword: '', errMsg: '', id: ''}
+    state={patientEmail: '', patientpassword:'', dentistemail: '', dentistPassword: '', errMsgpatient: '', errMsgdoctor: ''}
 
     onChangePatientEmail = (event) => {
         this.setState({patientEmail: event.target.value})
@@ -32,6 +32,7 @@ class LoginPage extends Component{
 
     onDentistSubmitSuccess = (newData) => {
         Cookies.set('jwt_token', newData.jwtToken, {expires: 1})
+        console.log(newData.dentistId)
         this.props.navigate(`/dentist/:${newData.dentistId}/dashboard`)
     }
 
@@ -54,7 +55,7 @@ class LoginPage extends Component{
             this.onUserSubmitSuccess(newData)
         }
         else{
-            this.setState({errMsg: data.message})
+            this.setState({errMsgpatient: data.message})
         }
     }
 
@@ -75,10 +76,10 @@ class LoginPage extends Component{
             const newData = {jwtToken: data.token, dentistId: data.dentistId}
             console.log(newData)
             this.onDentistSubmitSuccess(newData)
-            this.setState({id: newData.dentistId})
+            
         }
         else{
-            this.setState({errMsg: data.message})
+            this.setState({errMsgdoctor: data.message})
         }
     }
 
@@ -91,7 +92,7 @@ class LoginPage extends Component{
     }
 
     render(){
-        const {errMsg,patientEmail,patientpassword,dentistemail,dentistPassword} = this.state
+        const {errMsgpatient,errMsgdoctor,patientEmail,patientpassword,dentistemail,dentistPassword} = this.state
         const jwtToken = Cookies.get("jwt_token")
         if(jwtToken !== undefined){
             return <Navigate to="/" />
@@ -110,7 +111,7 @@ class LoginPage extends Component{
                             <input type="password" value={patientpassword}  className='inputEl' placeholder="enter your password" onChange={this.onChangePatientPassord} />
                             <button type="submit" className="btn btn-primary mt-4 w-100">Sign In</button>
                         </form>
-                        {errMsg.length > 0 && <p className='text-danger text-center'>**{errMsg}</p>}
+                        {errMsgpatient.length > 0 && <p className='text-danger text-center'>**{errMsgpatient}</p>}
                         <div className='title-register-btn mt-2'>
                             or
                             <button className='register-btn' onClick={this.gotoUserRegistration}>Create new account ?</button>
@@ -130,6 +131,7 @@ class LoginPage extends Component{
                             <input type="password" value={dentistPassword} className='inputEl' placeholder="enter your password" onChange={this.onChangeDentistPasword} />
                             <button type="submit" className="btn btn-primary mt-4 w-100">Sign In</button>
                         </form>
+                        {errMsgdoctor.length > 0 && <p className='text-danger text-center'>**{errMsgdoctor}</p>}
                         <div className='title-register-btn mt-2'>
                             or
                             <button className='register-btn' onClick={this.gotoDentistRgistration}>Create new account ?</button>
