@@ -1,0 +1,21 @@
+.loader-container{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 50vh;
+}
+
+.failure-container{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 50vh;
+}
+
+.doctor-list-container{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}

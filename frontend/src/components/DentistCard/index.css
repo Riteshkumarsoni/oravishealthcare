@@ -1,0 +1,20 @@
+
+.doctor-item-list{
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.item-id{
+    color: #000000;
+    font-family: Roboto;
+    font-weight: 600;
+    font-size: 14px;
+}
+
+.item-status{
+    
+    font-family: Roboto;
+    font-weight: 600;
+    font-size: 14px;
+}
