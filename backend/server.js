@@ -15,7 +15,7 @@ app.use(express.json());
 const corsOptions = {
   origin: [
     'http://localhost:3000',    // Local development
-    'https://assignment-acrofix-ritesh.vercel.app'  // Vercel frontend
+    'https://oravishealthcare.vercel.app/login'  // Vercel frontend
   ],
   credentials: true  // Allow credentials if you're using cookies or session-based auth
 };
